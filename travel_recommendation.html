@@ -20,14 +20,16 @@
             <a href="contact-us.html"><span class="material-icons">email</span>Contact us</a>
         </div>
         <div class="search-container">
-            <form action="/action_page.php">
-                <input type="text" placeholder="Enter destination or keyword" name="search">
-                <button type="submit"><span class="material-icons">search</span>Search</button>
-                <button type="submit"><span class="material-icons">restart_alt</span>Reset</button>
-            </form>
+            <input type="text" id="conditionInput" placeholder="Enter destination or keyword" name="search"></input>
+            <button id='btnSearch'><span class="material-icons">search</span>Search</button>
+            <button id='btnReset'><span class="material-icons">restart_alt</span>Reset</button>
         </div>
     </div>
     <div class="wrapper">
+        <div class="searchCondition">
+            <div id="result"></div>
+            <h1>Search Results</h1>
+        </div>
         <div class = "presentation">
             <h1>Welcome to Travel Master</h1>
             <h2>Dream / Explore / Travel</h2>
@@ -42,5 +44,6 @@
         </div>
     </div>
     <script src="https://kit.fontawesome.com/02d110e88a.js" crossorigin="anonymous"></script>
+    <script src="./travel_recommendation.js"></script>
 </body>
 </html>
