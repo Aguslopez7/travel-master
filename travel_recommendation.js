@@ -8,9 +8,21 @@ function searchCondition() {
     fetch('travel_recommendation_api.json')
       .then(response => response.json())
       .then(data => {
-        if (input === 'beach' || input === 'beaches') {
+        const isBeach = input === 'beach' || input === 'beaches';
+        const isCountry = input === 'country' || input === 'countries';
+        const isTemple = input === 'temple' || input === 'temples';
+        if (isBeach) {
             displayBeaches(resultDiv, data.beaches);
-        } else {
+        } 
+        else if (isTemple)
+        {
+          displayTemples(resultDiv, data.temples);
+        }
+        else if(isCountry)
+        {
+          displayCountries(resultDiv, data.countries);
+        }
+        else {
             const countries = data.countries.filter(country => country.name.toLowerCase().includes(input));
             const temples = data.temples.filter(temple => temple.name.toLowerCase().includes(input));
             const beaches = data.beaches.filter(beach => beach.name.toLowerCase().includes(input));
@@ -56,15 +68,95 @@ function displayBeaches(resultDiv, beaches) {
         return;
     }
 
-    const resultList = document.createElement('ul');
-
     beaches.forEach(beach => {
-        const listItem = createListItem(beach.name, 'Beach');
-        resultList.appendChild(listItem);
-    });
+        const beachDiv = document.createElement('div');
+        beachDiv.classList.add('beach');
 
-    resultDiv.appendChild(resultList);
+        const beachName = document.createElement('h3');
+        beachName.textContent = beach.name;
+        beachDiv.appendChild(beachName);
+
+        const beachImage = document.createElement('img');
+        beachImage.src = beach.imageUrl;
+        beachImage.alt = beach.name;
+        beachDiv.appendChild(beachImage);
+
+        const beachDescription = document.createElement('p');
+        beachDescription.textContent = beach.description;
+        beachDiv.appendChild(beachDescription);
+
+        resultDiv.appendChild(beachDiv);
+    });
 }
+
+function displayTemples(resultDiv, temples) {
+  if (temples.length === 0) {
+      resultDiv.innerHTML = 'No Temples found.';
+      return;
+  }
+
+  temples.forEach(temple => {
+      const templeDiv = document.createElement('div');
+      templeDiv.classList.add('temple');
+
+      const templeName = document.createElement('h3');
+      templeName.textContent = temple.name;
+      templeDiv.appendChild(templeName);
+
+      const templeImage = document.createElement('img');
+      templeImage.src = temple.imageUrl;
+      templeImage.alt = temple.name;
+      templeDiv.appendChild(templeImage);
+
+      const templeDescription = document.createElement('p');
+      templeDescription.textContent = temple.description;
+      templeDiv.appendChild(templeDescription);
+
+      resultDiv.appendChild(templeDiv);
+  });
+}
+
+function displayCountries(resultDiv, countries) {
+  if (countries.length === 0) {
+      resultDiv.innerHTML = 'No Temples found.';
+      return;
+  }
+
+  countries.forEach(country => {
+    const countryDiv = document.createElement('div');
+    countryDiv.classList.add('country');
+
+    const countryName = document.createElement('h2');
+    countryName.textContent = country.name;
+    countryDiv.appendChild(countryName);
+
+    const cityList = document.createElement('ul');
+    country.cities.forEach(city => {
+        const cityItem = createListItem(city.name, 'City');
+        cityList.appendChild(cityItem);
+
+        const cityDiv = document.createElement('div');
+        cityDiv.classList.add('city');
+
+        const cityName = document.createElement('h3');
+        cityName.textContent = city.name;
+        cityDiv.appendChild(cityName);
+
+        const cityImage = document.createElement('img');
+        cityImage.src = city.imageUrl;
+        cityImage.alt = city.name;
+        cityDiv.appendChild(cityImage);
+
+        const cityDescription = document.createElement('p');
+        cityDescription.textContent = city.description;
+        cityDiv.appendChild(cityDescription);
+
+        countryDiv.appendChild(cityDiv);
+    });
+    resultDiv.appendChild(countryDiv);
+});
+}
+
 
 function createListItem(name, type) {
     const listItem = document.createElement('li');
