@@ -1,32 +1,48 @@
+/***** General Style *****/
+
 * {
     box-sizing: border-box;
 }
-body, html {
+
+body,
+html,
+.wrapper {
     height: 100%;
-  }
-  
+    margin: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
 body {
-    /* margin: 0; */
+    margin: 0;
     font-family: Arial, Helvetica, sans-serif;
-
     background-image: url("https://images.unsplash.com/photo-1488085061387-422e29b40080?q=80&w=1931&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
-    /* Full height */
-    height: 100%;
-
-    /* Center and scale the image nicely */
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-.wrapper{
-    color:#ddd;
+span {
+    margin-right: 10px;
+    font-size: 17px !important;
 }
 
-.topnav {
-    overflow: hidden;
-    background-color: #e9e9e980;
+button {
+    color: black;
+    border: none;
+    text-align: center;
+    padding: 6px;
+    margin-top: 8px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding-right: 15px;
+    text-decoration: none;
+    font-size: 17px;
+    border-radius: 25px;
+    cursor: pointer;
 }
+
+/***** Navbar Style *****/
 
 .topnav a {
     float: left;
@@ -38,6 +54,10 @@ body {
     font-size: 17px;
 }
 
+/* .middle-navbar{
+    margin: auto;
+    width: 20%;
+} */
 .topnav a:hover {
     background-color: #ddd;
     color: black;
@@ -52,6 +72,13 @@ body {
     float: right;
 }
 
+.topnav input {
+    border-radius: 25px;
+    outline: solid;
+    outline-color: #989d9e;
+    outline-width: thin;
+}
+
 .topnav input[type=text] {
     padding: 6px;
     margin-top: 8px;
@@ -59,21 +86,164 @@ body {
     border: none;
 }
 
-.topnav .search-container button {
-    float: right;
+/* .topnav .search-container button {
+
     padding: 6px;
     margin-top: 8px;
     margin-right: 5px;
     margin-left: 5px;
     background: #ddd;
+    
     font-size: 17px;
-    border: none;
     cursor: pointer;
-}
+} */
 
 .topnav .search-container button:hover {
     background: #ccc;
 }
+
+.topnav {
+    overflow: hidden;
+    background-color: #e9e9e980;
+}
+
+/***** Home Page Style *****/
+
+.wrapper {
+    background-color: #383a3b80;
+    color: white;
+    position: relative;
+}
+
+.presentation {
+    padding: 25px 50px 75px 100px;
+    width: 50%;
+}
+
+.presentation h1 {
+    font-size: 50px;
+    font-family: "Kode Mono", monospace;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.presentation h2 {
+    font-size: 30px;
+    font-family: "Kode Mono", monospace;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.presentation p {
+    font-size: 18px;
+    font-family: "Inconsolata", monospace;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.description {
+    word-wrap: break-word;
+    width: 55%;
+}
+
+.icon-bar {
+    width: 90px;
+    background-color: #383a3b80;
+    border-radius: 55px;
+    position: absolute;
+    bottom: 50px;
+    font-size: 18px;
+    margin: 15px;
+    border: 1px solid white;
+}
+
+.icon-bar a {
+    display: block;
+    text-align: center;
+    padding: 16px;
+    transition: all 0.3s ease;
+    color: white;
+    font-size: 36px;
+}
+
+.icon-bar a:hover {
+    background-color: #000;
+}
+
+/***** About Us *****/
+.about-div {
+    border-radius: 5px;
+    background-color: #383a3b80;
+    margin: auto;
+    width: 40%;
+    border: 1px solid white;
+    margin-top: 10%;
+    padding: 10px;
+    line-height: 1.2;
+}
+
+/* Create three equal columns that floats next to each other */
+.column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    height: 300px; /* Should be removed. Only for demonstration */
+  }
+  
+  /* Clear floats after the columns */
+  .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  }
+  
+  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+  @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+    }
+  }
+/***** Contact Us *****/
+
+.form-div input[type=text],
+textarea,
+select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.form-div input[type=submit] {
+    width: 100%;
+    background-color: #e9e9e980;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 1px solid white;
+}
+
+.form-div input[type=submit]:hover {
+    background-color: #383a3b80;
+}
+
+.form-div {
+    border-radius: 5px;
+    background-color: #383a3b80;
+    margin: auto;
+    width: 40%;
+    border: 1px solid white;
+    margin-top: 10%;
+    padding: 10px;
+}
+
+/***** Responsive *****/
 
 @media screen and (max-width: 600px) {
     .topnav .search-container {
