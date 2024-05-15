@@ -22,11 +22,6 @@ body {
     background-size: cover;
 }
 
-span {
-    margin-right: 10px;
-    font-size: 17px !important;
-}
-
 button {
     color: black;
     border: none;
@@ -107,12 +102,27 @@ button {
     background-color: #e9e9e980;
 }
 
+.topnav span {
+    margin-right: 10px;
+    font-size: 17px !important;
+}
+
 /***** Home Page Style *****/
 
 .wrapper {
     background-color: #383a3b80;
     color: white;
     position: relative;
+}
+
+.presentation {
+    border-radius: 5px;
+    background-color: #383a3b80;
+    margin: auto;
+    width: 40%;
+    border: 1px solid white;
+    margin-top: 10%;
+    padding: 10px;
 }
 
 .presentation {
@@ -147,9 +157,9 @@ button {
 }
 
 .icon-bar {
-    width: 90px;
+    width: 70px;
     background-color: #383a3b80;
-    border-radius: 55px;
+    border-radius: 20px;
     position: absolute;
     bottom: 50px;
     font-size: 18px;
@@ -175,34 +185,48 @@ button {
     border-radius: 5px;
     background-color: #383a3b80;
     margin: auto;
-    width: 40%;
+    width: 50%;
     border: 1px solid white;
     margin-top: 10%;
     padding: 10px;
     line-height: 1.2;
 }
 
+.about-div span {
+    margin-right: 10px;
+    font-size: 25px;
+}
+
+.about-div footer {
+    font-weight: bold;
+}
+
 /* Create three equal columns that floats next to each other */
 .column {
     float: left;
-    width: 33.33%;
+    width: 32%;
     padding: 10px;
-    height: 300px; /* Should be removed. Only for demonstration */
-  }
-  
-  /* Clear floats after the columns */
-  .row:after {
+    margin: 5px;
+    height: 250px;
+    border: 1px solid white;
+    border-radius: 25px;
+    background-color: #252627b0 !important;
+}
+
+/* Clear floats after the columns */
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
-  
-  /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-  @media screen and (max-width: 600px) {
+}
+
+/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
     .column {
-      width: 100%;
+        width: 100%;
     }
-  }
+}
+
 /***** Contact Us *****/
 
 .form-div input[type=text],
@@ -219,7 +243,7 @@ select {
 
 .form-div input[type=submit] {
     width: 100%;
-    background-color: #e9e9e980;
+    background-color: #252627b0;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
