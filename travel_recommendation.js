@@ -1,4 +1,7 @@
 const btnSearch = document.getElementById('btnSearch');
+const btnReset = document.getElementById('btnReset');
+const presentationDiv = document.getElementById("presentation-div");
+const searchConditionDiv = document.getElementById("searchCondition");
 
 function searchCondition() {
     const input = document.getElementById('conditionInput').value.toLowerCase();
@@ -29,6 +32,8 @@ function searchCondition() {
 
             displayResults(resultDiv, countries, temples, beaches);
         }
+        HideDiv(presentationDiv);
+        ShowDiv(searchConditionDiv);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
@@ -168,4 +173,19 @@ function displayError(resultDiv) {
     resultDiv.innerHTML = 'An error occurred while fetching data.';
 }
 
+function HideDiv(div) {
+    div.style.display = "none";
+}
+
+function ShowDiv(div) {
+    div.style.display = "block";
+}
+
+function resetSearch(){
+    document.getElementById("conditionInput").value = "";
+    HideDiv(searchConditionDiv);
+    ShowDiv(presentationDiv);
+}
+
 btnSearch.addEventListener('click', searchCondition);
+btnReset.addEventListener('click', resetSearch);
