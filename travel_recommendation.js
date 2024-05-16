@@ -5,66 +5,37 @@ const searchConditionDiv = document.getElementById("searchCondition");
 
 function searchCondition() {
     const input = document.getElementById('conditionInput').value.toLowerCase();
+    if (input === "") {
+        return;
+    }
     const resultDiv = document.getElementById('result');
     resultDiv.innerHTML = '';
 
     fetch('travel_recommendation_api.json')
-      .then(response => response.json())
-      .then(data => {
-        const isBeach = input === 'beach' || input === 'beaches';
-        const isCountry = input === 'country' || input === 'countries';
-        const isTemple = input === 'temple' || input === 'temples';
-        if (isBeach) {
-            displayBeaches(resultDiv, data.beaches);
-        } 
-        else if (isTemple)
-        {
-          displayTemples(resultDiv, data.temples);
-        }
-        else if(isCountry)
-        {
-          displayCountries(resultDiv, data.countries);
-        }
-        else {
-            const countries = data.countries.filter(country => country.name.toLowerCase().includes(input));
-            const temples = data.temples.filter(temple => temple.name.toLowerCase().includes(input));
-            const beaches = data.beaches.filter(beach => beach.name.toLowerCase().includes(input));
-
-            displayResults(resultDiv, countries, temples, beaches);
-        }
-        HideDiv(presentationDiv);
-        ShowDiv(searchConditionDiv);
-      })
-      .catch(error => {
-        console.error('Error fetching data:', error);
-        displayError(resultDiv);
-      });
-}
-
-function displayResults(resultDiv, countries, temples, beaches) {
-    if (countries.length === 0 && temples.length === 0 && beaches.length === 0) {
-        resultDiv.innerHTML = 'No results found.';
-        return;
-    }
-
-    const resultList = document.createElement('ul');
-
-    countries.forEach(country => {
-        const listItem = createListItem(country.name, 'Country');
-        resultList.appendChild(listItem);
-    });
-
-    temples.forEach(temple => {
-        const listItem = createListItem(temple.name, 'Temple');
-        resultList.appendChild(listItem);
-    });
-
-    beaches.forEach(beach => {
-        const listItem = createListItem(beach.name, 'Beach');
-        resultList.appendChild(listItem);
-    });
-
-    resultDiv.appendChild(resultList);
+        .then(response => response.json())
+        .then(data => {
+            const isBeach = input === 'beach' || input === 'beaches';
+            const isCountry = input === 'country' || input === 'countries';
+            const isTemple = input === 'temple' || input === 'temples';
+            if (isBeach) {
+                displayBeaches(resultDiv, data.beaches);
+            }
+            else if (isTemple) {
+                displayTemples(resultDiv, data.temples);
+            }
+            else if (isCountry) {
+                displayCountries(resultDiv, data.countries);
+            }
+            else {
+                displaySearchNotFound(resultDiv);
+            }
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+            displayError(resultDiv);
+        });
+    HideDiv(presentationDiv);
+    ShowDiv(searchConditionDiv);
 }
 
 function displayBeaches(resultDiv, beaches) {
@@ -83,7 +54,6 @@ function displayBeaches(resultDiv, beaches) {
 
         const beachImage = document.createElement('img');
         beachImage.src = beach.imageUrl;
-        beachImage.alt = beach.name;
         beachDiv.appendChild(beachImage);
 
         const beachDescription = document.createElement('p');
@@ -95,82 +65,83 @@ function displayBeaches(resultDiv, beaches) {
 }
 
 function displayTemples(resultDiv, temples) {
-  if (temples.length === 0) {
-      resultDiv.innerHTML = 'No Temples found.';
-      return;
-  }
+    if (temples.length === 0) {
+        resultDiv.innerHTML = 'No temples found.';
+        return;
+    }
 
-  temples.forEach(temple => {
-      const templeDiv = document.createElement('div');
-      templeDiv.classList.add('temple');
+    temples.forEach(temple => {
+        const templeDiv = document.createElement('div');
+        templeDiv.classList.add('temple');
 
-      const templeName = document.createElement('h3');
-      templeName.textContent = temple.name;
-      templeDiv.appendChild(templeName);
+        const templeName = document.createElement('h3');
+        templeName.textContent = temple.name;
+        templeDiv.appendChild(templeName);
 
-      const templeImage = document.createElement('img');
-      templeImage.src = temple.imageUrl;
-      templeImage.alt = temple.name;
-      templeDiv.appendChild(templeImage);
+        const templeImage = document.createElement('img');
+        templeImage.src = temple.imageUrl;
+        templeDiv.appendChild(templeImage);
 
-      const templeDescription = document.createElement('p');
-      templeDescription.textContent = temple.description;
-      templeDiv.appendChild(templeDescription);
+        const templeDescription = document.createElement('p');
+        templeDescription.textContent = temple.description;
+        templeDiv.appendChild(templeDescription);
 
-      resultDiv.appendChild(templeDiv);
-  });
+        resultDiv.appendChild(templeDiv);
+    });
 }
 
 function displayCountries(resultDiv, countries) {
-  if (countries.length === 0) {
-      resultDiv.innerHTML = 'No Temples found.';
-      return;
-  }
+    if (countries.length === 0) {
+        resultDiv.innerHTML = 'No countries found.';
+        return;
+    }
 
-  countries.forEach(country => {
-    const countryDiv = document.createElement('div');
-    countryDiv.classList.add('country');
+    countries.forEach(country => {
+        const countryDiv = document.createElement('div');
+        countryDiv.classList.add('country');
 
-    const countryName = document.createElement('h2');
-    countryName.textContent = country.name;
-    countryDiv.appendChild(countryName);
+        const countryName = document.createElement('h2');
+        countryName.textContent = country.name;
+        countryDiv.appendChild(countryName);
 
-    const cityList = document.createElement('ul');
-    country.cities.forEach(city => {
-        const cityItem = createListItem(city.name, 'City');
-        cityList.appendChild(cityItem);
+        country.cities.forEach(city => {
+            const cityDiv = document.createElement('div');
+            cityDiv.classList.add('city');
 
-        const cityDiv = document.createElement('div');
-        cityDiv.classList.add('city');
+            const cityName = document.createElement('h3');
+            cityName.textContent = city.name;
+            cityDiv.appendChild(cityName);
 
-        const cityName = document.createElement('h3');
-        cityName.textContent = city.name;
-        cityDiv.appendChild(cityName);
+            const cityImage = document.createElement('img');
+            cityImage.src = city.imageUrl;
+            cityDiv.appendChild(cityImage);
 
-        const cityImage = document.createElement('img');
-        cityImage.src = city.imageUrl;
-        cityImage.alt = city.name;
-        cityDiv.appendChild(cityImage);
+            const cityDescription = document.createElement('p');
+            cityDescription.textContent = city.description;
+            cityDiv.appendChild(cityDescription);
 
-        const cityDescription = document.createElement('p');
-        cityDescription.textContent = city.description;
-        cityDiv.appendChild(cityDescription);
+            const cityDivider = document.createElement('hr');
+            cityDiv.appendChild(cityDivider);
 
-        countryDiv.appendChild(cityDiv);
+            countryDiv.appendChild(cityDiv);
+        });
+        resultDiv.appendChild(countryDiv);
     });
-    resultDiv.appendChild(countryDiv);
-});
-}
-
-
-function createListItem(name, type) {
-    const listItem = document.createElement('li');
-    listItem.textContent = `${name} (${type})`;
-    return listItem;
 }
 
 function displayError(resultDiv) {
     resultDiv.innerHTML = 'An error occurred while fetching data.';
+}
+
+function displaySearchNotFound(resultDiv) {
+    resultDiv.innerHTML = `
+    No search results, please try with:<br>
+    <ul>
+        <li>"country" or "countries"</li>
+        <li>"beach" or "beaches"</li>
+        <li>"temple" or "temples"</li>
+    </ul>
+    `;
 }
 
 function HideDiv(div) {
@@ -181,7 +152,7 @@ function ShowDiv(div) {
     div.style.display = "block";
 }
 
-function resetSearch(){
+function resetSearch() {
     document.getElementById("conditionInput").value = "";
     HideDiv(searchConditionDiv);
     ShowDiv(presentationDiv);

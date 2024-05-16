@@ -22,7 +22,8 @@ body {
 }
 
 button {
-    color: black;
+    color: white;
+    background-color: #252627b0;
     border: none;
     text-align: center;
     padding: 6px;
@@ -36,7 +37,32 @@ button {
     cursor: pointer;
 }
 
+.wrapper {
+    background-color: #383a3b80;
+    color: white;
+    position: relative;
+}
+
+.presentation,
+.about-div,
+.form-div {
+    border-radius: 5px;
+    border: 1px solid white;
+    background-color: #383a3b80;
+    padding: 50px;
+    width: 50%;
+    margin: 0;
+}
+
 /***** Navbar Style *****/
+
+.nav-logo{
+    background-color: #383a3b80 !important;
+    color: white !important;
+    font-family: "Kode Mono", monospace;
+    font-weight: 600;
+    font-style: normal;
+}
 
 .topnav a {
     float: left;
@@ -52,9 +78,10 @@ button {
     margin: auto;
     width: 20%;
 } */
+
 .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+    background-color: #383a3b80;
+    color: white;
 }
 
 .topnav a.active {
@@ -80,20 +107,8 @@ button {
     border: none;
 }
 
-/* .topnav .search-container button {
-
-    padding: 6px;
-    margin-top: 8px;
-    margin-right: 5px;
-    margin-left: 5px;
-    background: #ddd;
-    
-    font-size: 17px;
-    cursor: pointer;
-} */
-
 .topnav .search-container button:hover {
-    background: #ccc;
+    background: #383a3b;
 }
 
 .topnav {
@@ -107,24 +122,6 @@ button {
 }
 
 /***** Home Page Style *****/
-
-.wrapper {
-    background-color: #383a3b80;
-    color: white;
-    position: relative;
-}
-
-.presentation {
-    border-radius: 5px;
-    background-color: #383a3b80;
-    margin: auto;
-    width: 40%;
-    border: 1px solid white;
-    margin-top: 10%;
-    padding: 10px;
-    padding: 25px 50px 75px 100px;
-    width: 50%;
-}
 
 .presentation h1 {
     font-size: 50px;
@@ -141,16 +138,29 @@ button {
 }
 
 .presentation p {
-    font-size: 18px;
     font-family: "Inconsolata", monospace;
     font-weight: 500;
-    line-height: 1.2;
+    line-height: 1.5;
 }
 
 .description {
     word-wrap: break-word;
-    width: 55%;
+    width: 90%;
 }
+
+.help-info {
+    background-color: #252627b0;
+    border-radius: 20px;
+    padding: 15px;
+    border: 1px solid white;
+}
+
+.fa-circle-info {
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+/***** Social Media Bar *****/
 
 .icon-bar {
     width: 70px;
@@ -172,8 +182,8 @@ button {
     font-size: 36px;
 }
 
-.icon-bar a:hover {
-    background-color: #000;
+.icon-bar i:hover {
+    background-color: #252627b0;
 }
 
 /***** Search Results *****/
@@ -186,6 +196,15 @@ button {
     border-radius: 25px;
     margin: 10px;
     padding: 20px;
+}
+
+.country img,
+.temple img,
+.beach img {
+    max-width: 300px;
+    max-height: 300px;
+    border-radius: 25px;
+    border: 1px solid white;
 }
 
 #searchCondition {
@@ -205,13 +224,6 @@ button {
 /***** About Us *****/
 
 .about-div {
-    border-radius: 5px;
-    background-color: #383a3b80;
-    margin: auto;
-    width: 50%;
-    border: 1px solid white;
-    margin-top: 10%;
-    padding: 10px;
     line-height: 1.2;
 }
 
@@ -220,8 +232,19 @@ button {
     font-size: 25px;
 }
 
-.about-div footer {
-    font-weight: bold;
+.about-div h1, .about-div h2{
+    font-family: "Kode Mono", monospace;
+    font-weight: 600;
+    font-style: normal;
+}
+
+.about-div footer{
+    text-align: center;
+}
+.about-div p, .about-div footer {
+    font-family: "Inconsolata", monospace;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 /* Create three equal columns that floats next to each other */
@@ -230,10 +253,19 @@ button {
     width: 32%;
     padding: 10px;
     margin: 5px;
-    height: 250px;
+    height: 120px; /* if description is displaying h=250px */
     border: 1px solid white;
     border-radius: 25px;
     background-color: #252627b0 !important;
+}
+
+.column p{
+    display: none; /* to show description change to block */
+}
+
+.column h2{
+    display: flex;
+    align-items: center;
 }
 
 /* Clear floats after the columns */
@@ -243,16 +275,10 @@ button {
     clear: both;
 }
 
-/* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
-@media screen and (max-width: 600px) {
-    .column {
-        width: 100%;
-    }
-}
-
 /***** Contact Us *****/
 
 .form-div input[type=text],
+.form-div input[type=email],
 textarea,
 select {
     width: 100%;
@@ -270,7 +296,6 @@ select {
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
-    border: none;
     border-radius: 4px;
     cursor: pointer;
     border: 1px solid white;
@@ -280,17 +305,94 @@ select {
     background-color: #383a3b80;
 }
 
-.form-div {
-    border-radius: 5px;
-    background-color: #383a3b80;
-    margin: auto;
-    width: 40%;
-    border: 1px solid white;
-    margin-top: 10%;
-    padding: 10px;
+.form-div h1{
+    font-family: "Kode Mono", monospace;
+    font-weight: 500;
+    font-style: normal;
+}
+
+.form-div label{
+    font-family: "Inconsolata", monospace;
+    font-weight: 500;
 }
 
 /***** Responsive *****/
+
+@media screen and (min-width: 1920px) {
+    .presentation,
+    .about-div,
+    .form-div {
+        position: absolute; /* parent container needs to be relative*/
+        top: 50%;
+        left: 50%;
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
+    }    
+}
+
+@media screen and (max-width: 1366px) {
+    
+    /***** Home Page *****/
+
+    .presentation {
+        margin: auto;
+        margin-top: 2.5%;
+        width: 65%;
+    }
+
+    .presentation h1 {
+        font-size: 35px;
+    }
+
+    .presentation h2 {
+        font-size: 25px;
+    }
+
+    .description {
+        width: 75%;
+    }
+
+    /***** About Us *****/
+
+    .about-div {
+        margin: auto;
+        width: 65%;
+        margin-top: 2.5%;
+    }
+
+    .about-div span {
+        margin-right: 10px;
+        font-size: 25px;
+    }
+
+    .about-div p{
+        font-size: small;
+    }
+
+    .column {
+        height: 100px;
+    }
+
+    .column h2{
+        font-size: large;
+    }
+
+    .column p{
+        display: none;
+    }
+
+    /***** Contact Us *****/
+
+    .form-div {
+        margin: auto;
+        width: 65%;
+        margin-top: 2.5%;    
+    }
+
+    textarea {
+        height: 5em;
+    }
+}
 
 @media screen and (max-width: 600px) {
     .topnav .search-container {
@@ -308,7 +410,16 @@ select {
         padding: 14px;
     }
 
+    body {
+        background-color: lightblue;
+    }
+
     .topnav input[type=text] {
         border: 1px solid #ccc;
+    }
+
+    /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+    .column {
+        width: 100%;
     }
 }
